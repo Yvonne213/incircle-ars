@@ -93,6 +93,9 @@ async function main() {
   // hide the loading icon
   loadingIconConnect.style.display = "none";
 
+  
+    // Automatically display the table with existing names and hashes
+    await getNamesAndHashes();
 
  // Add event listener to the button
  $('#setArtistButton').click(async function () {
@@ -138,8 +141,13 @@ async function getNamesAndHashes() {
     // Create the table dynamically
     const table = document.createElement("table");
     const headerRow = table.insertRow(0);
-    headerRow.insertCell(0).innerHTML = "Artist";
-    headerRow.insertCell(1).innerHTML = "Hash";
+    const artistHeader = headerRow.insertCell(0);
+    artistHeader.innerHTML = "Artist";
+    artistHeader.className = "header-artist"; // Apply CSS class
+    
+    const hashHeader = headerRow.insertCell(1);
+    hashHeader.innerHTML = "Hash";
+    hashHeader.className = "header-hash"; // Apply CSS class
 
     for (let i = 0; i < names.length; i++) {
       const row = table.insertRow(i + 1);

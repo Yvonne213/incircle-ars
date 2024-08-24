@@ -186,6 +186,10 @@ h1{
   }
 }
 
+::placeholder {
+  color: rgba(255, 0, 0, 0.306);
+}
+
 
 canvas {
   display: block;
@@ -194,6 +198,11 @@ canvas {
 }
 /*↑↑↑Circle*/
 
+table {
+  width: 100%;
+  border: 1px solid;
+  margin-top: 40px;
+}
 
 /*Form*/
 #form {
@@ -210,6 +219,18 @@ canvas {
     margin-top: 20px;
     position: absolute;
   }
+}
+
+.header-artist {
+  font-weight: bold;
+  color: rgb(195, 114, 114); /* Change text color */
+  font-size: 16px; /* Change font size */
+}
+
+.header-hash {
+  font-weight: bold;
+  color: rgb(195, 114, 114); /* Change text color */
+  font-size: 16px; /* Change font size */
 }
 
 .button-container button {
