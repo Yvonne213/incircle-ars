@@ -202,8 +202,12 @@ table {
   width: 100%;
   border: 1px solid;
   margin-top: 40px;
+  padding: 15px;
+  ;
 }
-
+td {
+  height: 20px;
+}
 /*Form*/
 #form {
   width: 100%;
@@ -221,10 +225,14 @@ table {
   }
 }
 
+td.header-artist {
+  height:50px;
+}
 .header-artist {
   font-weight: bold;
   color: rgb(195, 114, 114); /* Change text color */
   font-size: 16px; /* Change font size */
+
 }
 
 .header-hash {
