@@ -55,12 +55,12 @@ async function main() {
 
   // Check if user is signed in to correct network
   const chainId = await provider.getNetwork();
-  if (chainId.chainId != 137) {
-    alert("Please switch to the Mumbai in MetaMask. The page will refresh automatically after switching.");
+  if (chainId.chainId != 11155111) {
+    alert("Please switch to the Sepolia in MetaMask. The page will refresh automatically after switching.");
     loadingIconConnect.style.display = "none";
     return;
   }
-  console.log("Connected to Mumbai");
+  console.log("Connected to Sepolia");
 
   // AT THIS POINT, THE USER SHOULD BE SUCCESSFULLY CONNECTED TO THE DAPP
 
