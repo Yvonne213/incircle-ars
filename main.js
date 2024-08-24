@@ -111,6 +111,7 @@ async function main() {
     // grab the number from the contract
     const namesList = await contract.getNames();
     const addressList = await contract.getAddresses();
+    const hashedNames = await contract.getHashedName();
 
     // console.log(namesList)
     // console.log(addressList)
@@ -118,7 +119,7 @@ async function main() {
     // namesList[0],namesList[1]
 
     // iterate through namesList and addressList, concat all items
-    var nameAndAddressArray = [];
+    var nameAndHashArray = [];
     var table = document.createElement("table");
 
 
@@ -126,7 +127,7 @@ async function main() {
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     cell1.innerHTML = String("Artist");
-    cell2.innerHTML = String("Address");
+    cell2.innerHTML = String("Hash");
 
     for (var i = 0; i < namesList.length; i++) {
 
@@ -134,7 +135,7 @@ async function main() {
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       cell1.innerHTML = String(namesList[i]);
-      cell2.innerHTML = String(addressList[i]);
+      cell2.innerHTML = String(hashedNames[i]);
 
     }
     document.getElementById("currentArtist").innerHTML = "";
@@ -161,77 +162,15 @@ async function main() {
   function setInfo() {
     // grab the user input from the input text box
     const nameToSet = $('#setArtistInput').val();
-    const addressToSet = $('#setAddressInput').val();
+    const hashToSet = $('#setHashInput').val();
 
-    // pass the converted number to the contract/ enter their name and address
-    if (addressToSet.length == 0) {
-      // alert("Please enter an address")
-      contractWithSigner.safeMint(connectedWalletAddress, nameToSet);
-    } else {
-      contractWithSigner.safeMint(addressToSet, nameToSet);
-    }
     currentArtistName = nameToSet
   }
 
-  checkNFTButton.onclick = checkNFT;
-  function checkNFT() {
-    inCircleClub.style.display = "block";
-    // const currentArtistName = await contract.getCurrentInCircleArtist();
-    // VIP.innerHTML = currentArtistName[0]+"<br>"+connectedWalletAddress;
-    VIP.innerHTML = currentArtistName + "<br>" + connectedWalletAddress;
-    console.log(VIP);
-  }
-
-
-  //pop-ups windows-size 
-  expand.onclick = expandWindow;
-  let expanded = false;
-  function expandWindow() {
-    if (expanded) {
-      // shrink down
-      inCircleClub.style.width = "900px";
-      inCircleClub.style.height = "360px";
-      inCircleClub.style.left = "500px";
-      inCircleClub.style.top = "200px";
-      expanded = false;
-    } else {
-      // expand
-      inCircleClub.style.width = "100%";
-      inCircleClub.style.height = "100%";
-      inCircleClub.style.left = "0";
-      inCircleClub.style.top = "0";
-      expanded = true;
-    }
-  }
-
-
-  window.onload = runCode();
-  async function runCode() {
-    console.log('Page Loaded');
-    var tokenBalance = await contract.balanceOf(connectedWalletAddress);
-      console.log(+tokenBalance);
-      if (tokenBalance > 0) {
-        checkNFTButton.style.display = 'block';
-        welcome.style.display = "block";
-      } 
-  };
-
-  // setArtistButton.onclick = async function setArtistButton() {
-  //     var tokenBalance = await contract.balanceOf(connectedWalletAddress);
-  //     console.log(+tokenBalance);
-  //     if (tokenBalance > 0) {
-  //       checkNFTButton.style.display = 'block';
-  //       welcome.style.display = "block";
-  //     } 
-  //   }
-
-  //   EVENT LISTENERS
-  //  triggers when the user entered
-  contract.on("getInSuccessfully", (artistName, wallet) => {
-    console.log(wallet);
-    welcome.style.display = "block";
-    checkNFTButton.style.display = "block";
-  })
+ 
+  // contract.on("getInSuccessfully", (artistName, hashedName) => {
+  //   welcome.style.display = "block";
+  // })
 }
 
 
