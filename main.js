@@ -94,83 +94,68 @@ async function main() {
   loadingIconConnect.style.display = "none";
 
 
+ // Add event listener to the button
+ $('#setArtistButton').click(async function () {
+  await setInfo();
+  await getNamesAndHashes();
+});
 
-  // demo:when I click on the setNum button...
-  $('#setArtistButton').click(function () {
-    setInfo();
-  })
+// Function to add a name and hash it on the blockchain
+async function setInfo() {
+  try {
+    // Get the name from the input field
+    const nameToSet = $('#setArtistInput').val();
 
-
-  setInterval(function () {
-    getUserInfo();
-  }, 2000)
-
-
-  // CHANGING THE BLOCKCHAIN
-  async function getUserInfo() {
-    // grab the number from the contract
-    const namesList = await contract.getNames();
-    const addressList = await contract.getAddresses();
-    const hashedNames = await contract.getHashedName();
-
-    // console.log(namesList)
-    // console.log(addressList)
-    // console.log(currentInCircleArtist);
-    // namesList[0],namesList[1]
-
-    // iterate through namesList and addressList, concat all items
-    var nameAndHashArray = [];
-    var table = document.createElement("table");
-
-
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = String("Artist");
-    cell2.innerHTML = String("Hash");
-
-    for (var i = 0; i < namesList.length; i++) {
-
-      var row = table.insertRow(1);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      cell1.innerHTML = String(namesList[i]);
-      cell2.innerHTML = String(hashedNames[i]);
-
+    // Ensure the name is not empty
+    if (nameToSet.trim() === "") {
+      alert("Please enter a valid name.");
+      return;
     }
+
+    // Call the smart contract function to hash and store the name
+    const tx = await contractWithSigner.nameInput(nameToSet);
+    await tx.wait();
+
+    console.log(`Name "${nameToSet}" added and hashed.`);
+  } catch (error) {
+    console.error("Error setting name:", error);
+    alert("Failed to add the name. Please try again.");
+  }
+}
+
+// Function to retrieve and display names and their hashes
+async function getNamesAndHashes() {
+  try {
+    // Get the names and hashed names from the contract
+    const names = await contract.getNames();
+    const hashes = await contract.getHashedName();
+
+    if (names.length === 0) {
+      console.log("No names have been added yet.");
+      return;
+    }
+
+    // Create the table dynamically
+    const table = document.createElement("table");
+    const headerRow = table.insertRow(0);
+    headerRow.insertCell(0).innerHTML = "Artist";
+    headerRow.insertCell(1).innerHTML = "Hash";
+
+    for (let i = 0; i < names.length; i++) {
+      const row = table.insertRow(i + 1);
+      row.insertCell(0).innerHTML = names[i];
+      row.insertCell(1).innerHTML = hashes[i];
+    }
+
+    // Display the table in the HTML
     document.getElementById("currentArtist").innerHTML = "";
     document.getElementById("currentArtist").appendChild(table);
 
-    // display the current nvvumber to your web page
-    //$('#currentArtist').innerHTML = nameAndAddressArray
-
-    // var row = table.insertRow(0);
-    // var cell1 = row.insertCell(0);
-    // var cell2 = row.insertCell(1);
-    // cell1.innerHTML = "Artist";
-    // cell2.innerHTML = "Address";
-    // document.getElementById("currentArtist").appendChild(table);
-
-    // console.log(nameAndAddressArray)
-    //document.getElementById("currentArtist").innerHTML = "<tr>"+"jjsjsjs"+"</tr>"
-    // $('#addressList').text(addressList)
+  } catch (error) {
+    console.error("Error retrieving names and hashes:", error);
+    alert("Failed to retrieve names and hashes. Please try again.");
   }
-
-
-  // READING FROM THE BLOCKCHAIN
-
-  function setInfo() {
-    // grab the user input from the input text box
-    const nameToSet = $('#setArtistInput').val();
-    const hashToSet = $('#setHashInput').val();
-
-    currentArtistName = nameToSet
-  }
-
- 
-  // contract.on("getInSuccessfully", (artistName, hashedName) => {
-  //   welcome.style.display = "block";
-  // })
+}
 }
 
 
