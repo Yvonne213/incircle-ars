@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Registry</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <script src="js/ethers-5.6.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="ars-abi.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="ars.css">
+    <script src="ars.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/b0f18ca6d6.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/zno4kzf.css">
+
+</head>
+<body>
+    <h1>In Circle Artist</h1>
+    
+    <label for="nameInput">Enter your name (max 64 characters):</label><br>
+    <input type="text" id="nameInput" maxlength="64">
+    <button onclick="submitName()">Submit Name</button>
+
+    <div id="loadingCircle"></div>
+
+    <p id="status"></p>
+
+    <h2>Most Recent Hashed Name:</h2>
+    <p id="recentHash">Loading...</p>
+    <h2>Most Recent Name:</h2>
+    <p id="recentCleartextName">Loading...</p>
+
+   
+</body>
+</html>
+ 
