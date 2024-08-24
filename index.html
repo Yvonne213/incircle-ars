@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js" type="application/javascript"></script>
+  <script src="js/ethers-5.6.umd.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+  <script src="abi.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="sketch.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/b0f18ca6d6.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/zno4kzf.css">
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>In Circle Artist</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid;
+    }
+
+    ::placeholder {
+      color: rgba(255, 0, 0, 0.306);
+    }
+  </style>
+</head>
+
+<body>
+ 
+  <!---------connection status----------->
+  <div class="button-container" style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">
+    <strong><small>Connection Status:</small></strong>
+    <span id="connectionStatus"><small>🔴 Not connected</small></span>
+
+    <strong><small>Your Connected Wallet <ins>(Polygon Mainnet)</ins>:</small></strong>
+    <span id="connectedWallet"><small>[No wallet connected]</small></span>
+    <small>👉</small>
+
+    <button id="connectButton">Connect</button>
+    <span id="loadingIconConnect" class="loading-icon"></span>
+  </div>
+    <!--↑↑↑--connection status↑↑↑------>
+
+  <div class="label">
+
+    <a href="https://yvonne213.github.io/Projects/InCircleArtist/Instruction.pdf"
+      onClick="window.open('https://yvonne213.github.io/Projects/InCircleArtist/Instruction.pdf','instruction','resizable,left=500,height=1000,width=900');return false;">
+      <p> How to be an in-circle artist? (Instruction)<i class="fa-regular fa-eye" style="font-size:20px;color:rgb(255, 47, 47)"></i></p>
+    </a>
+
+    <div id="paper">
+      <a href="https://yvonne213.github.io/Projects/InCircleArtist/white%20paper2023.pdf"
+        onClick="window.open('https://yvonne213.github.io/Projects/InCircleArtist/white%20paper2023.pdf','White paper','resizable,left=500,height=1000,width=900');return false;">
+        <p>White paper 2023<i class="fa-regular fa-eye" style="font-size:20px;color:rgb(255, 47, 47)"></i></p>
+      </a>
+    </div>
+    <div class="hide">
+      <p>A digital document that provides an explanation of what this DApp is, how it works, and what you can get from this DApp.</p>
+    </div>
+  </div>
+
+ <!---------main part----------->
+ <h1>Anyone can be an in-circle Artist</h1>
+  <!-- <p style="margin-top: -20px; color:rgb(208, 208, 208);">Know more about this DApp, please check the White paper. (right top corner)</p> -->
+
+  <!--prompt-->
+  <div class="prompt">
+    <p>Enter Your Name and Address : </p>
+    <p class="tips">(Once you connect successfully, your wallet address will show on the top.)</p>
+    <!-- <p style="font-size:0.6em;color:rgb(255, 166, 0)">*Top circle [Name]; Bottom circle [Wallet Address] </p> -->
+  </div>
+
+  <!--....................................-->
+  <!--posiontioning!!!!!-->
+
+
+  <div id="layerContainer">
+    <!--p5js canvas layer-->
+    <div id="motioncircle"></div>
+
+    <!-- This input element is the text box where users
+  enter the name they want to set -->
+    <div id="two">
+      <div>
+        <input style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;" type="text" name="setArtistInput" id="setArtistInput" placeholder="YOUR NAME...">
+      </div>
+      <div>
+        <input style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;" type="text" name="setAddressInput" id="setAddressInput" placeholder="YOUR WALLET ADDRESS...">
+  
+        <!--....................................-->
+      </div>
+
+      <!--....................................-->
+      <br>
+      <!--button-->
+      <div><button id="setArtistButton" style="margin-top:280px;">Click and Enter Artists' Circle</button></div>
+      <div id="welcome" style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">
+        <p>Welcome to the circle! :)</p>
+        <p>Now check your NFT! </p>
+        <p>👇 </p>
+      </div>
+  
+
+      <br>
+      <!-- <a href="https://yvonne213.github.io/Projects/InCircleArtist/check"><button id ="checkNFT">Check your NFT</button></a> -->
+      <div><button id="checkNFTButton">Check your NFT</button></div>
+     
+      <!--form parts-->
+      <div id="form">
+        <p style="margin: 30px; font-size:1.2em;font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">Current Artists in Circle
+        </p>
+        <p style="margin-bottom:10px;font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">
+          <a href="https://polygonscan.com/address/0xa00fd5b581d9573aa40c2774bca4ca5bfcc67f2a">view contract</a>
+        </p>
+        <div id="currentArtist" style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div id="inCircleClub">
+    <div id="inCircleClubContent">
+      <div class="bg"></div>
+      <button id="expand"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+
+      <div id="artistmode" style="font-family:poppins, sans-serif;font-weight: 300; font-style: normal;">
+        <h1>Welcome to the circle!</h1>
+        <p>Here is Artist Manifesto NFT Portal</p>
+        <i class="fa-solid fa-door-open" style="font-size:60px;color:rgb(255, 247, 247);"></i>
+        <hr>
+        <h3>Artist:</h3>
+        <h3 style="font-style:normal;font-family:fangsong">
+          <span id="VIP"></span>
+        </h3>
+        <h3>have already...</h3>
+        <h2 style="color:rgb(255, 255, 255)">IN THE CIRCLE ✔</h2>
+        <h2>IN-CIRCLE ARTIST VERIFIED ✔</h2>
+        <h3>You've got an NFT now!</h3>
+       <br>
+        <strong><p style="font-size: medium;color: red;">*Login in Opensea by using your same Metamask wallet address</p></strong>
+        <strong><p style="font-size: medium;color: red;">*If your NFT image haven't showed up, just wait for a moment.</p></strong>
+        <p><i class="fa-solid fa-angles-down" style="font-size:40px"></i></p>
+ 
+
+        <a href="https://testnets.opensea.io/account"
+          onClick="window.open('https://testnets.opensea.io/account','opensea','resizable,height=900,width=600'); return false;"><button>Check Your NFT</button></a>
+      </div>
+      
+      <div id="manifesto">
+        <p>View whole Artist Manifesto </p>
+        <p><i class="fa-solid fa-angles-down" style="font-size:40px"></i></p>
+        <a href="https://yvonne213.github.io/Projects/InCircleArtist/manifesto.html"
+          onClick="window.open('https://yvonne213.github.io/Projects/InCircleArtist/manifesto.html','Artist Manifesto','resizable,top=200,left=500,height=500,width=900');return false;"><button>Artist
+            Manifesto</button></a>
+     
+      </div>
+    </div>
+
+
+  </div>
+
+
+</body>
+
+</html>

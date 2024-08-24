@@ -1,0 +1,440 @@
+* {
+  margin: 1;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .button-container {
+    display: none;
+  }
+}
+
+a {
+  color: red; /* Default color */
+  text-decoration: none; /* Remove underlines by default, but you can customize this */
+}
+
+a:visited {
+  color: red; /* Color after the link has been visited */
+}
+
+a:hover {
+  color: rgb(0, 0, 0); /* Color when hovering over the link */
+}
+
+a:active {
+  color: purple; /* Color when the link is being clicked */
+}
+
+
+ body {
+  text-align: center;
+  font-family: Arial;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* justify-content: center !important; */
+  align-items: center;
+  gap: 1rem;
+  padding: 1em;
+}
+
+
+  @media (max-width: 768px) {
+    body {
+      text-align: center;
+      font-family: Arial;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-width:100vh;
+      /* justify-content: center !important; */
+      align-items: center;
+      gap: 1rem;
+      padding: 1em;
+     
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1{
+      margin-top: 0px;
+      font-family:poppins, sans-serif;
+      font-weight: 300; 
+      font-style: normal;  
+      text-align: center;
+
+    }
+  }
+
+h1{
+  margin-top: 50px;
+  font-family:poppins, sans-serif;
+  font-weight: 300; 
+  font-style: normal;  
+  text-align: center;
+}
+
+.prompt {
+  font-size: 1.3em;
+  margin-top: 0em;
+  color:rgb(174, 0, 0);
+  font-family:poppins, sans-serif;
+  font-weight: 300; 
+  font-style: normal;
+  text-align: center;
+}
+.tips{
+  font-size:15px; 
+  margin-top: -10px; 
+  color:rgb(250, 165, 165);
+  font-family:poppins, sans-serif;
+  font-weight: 300; 
+  font-style: normal;
+  text-align: center;
+}
+
+/*Hyperlink*/
+.label {
+  position: absolute;
+  right: 50px;
+  font-size: 15px;
+  margin-top: -10px;
+  text-align: right;
+
+}
+@media (max-width: 768px) {
+  .label {
+    position: static; /* Change to static positioning on smaller screens */
+    text-align: center; /* Center-align the text */
+    min-width: 100vh;
+    min-height:13vh;
+  }
+}
+
+.hide {
+  display: none;
+  top: 100px;
+  right: 10px;
+  position: absolute;
+}
+
+#paper:hover+.hide {
+  display: block;
+  color: rgba(0, 0, 0, 0.253);
+}
+/*↑↑↑Hyperlink*/
+
+/*Connect*/
+#layerContainer {
+  max-width: 880px;
+  width: 100vw;
+  height: 65vw;
+  position: relative;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  
+}
+/*↑↑↑Connect*/
+
+/*Circle*/
+#motioncircle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  #motioncircle {
+    position: relative;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+   margin-top: 0em;
+  
+  }
+}
+
+#two {
+  /* width: 0%;
+  height: 100%; */
+  text-align: center;
+  margin-top: 250px;
+  position: absolute;
+  width: 880px;
+}
+@media (max-width: 768px) {
+  #two {
+    /* width: 0%;
+    height: 100%; */
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: -20px;
+    position: absolute;
+    width: 880px;
+  }
+}
+
+
+canvas {
+  display: block;
+  position: absolute;
+  margin-top: -10px;
+}
+/*↑↑↑Circle*/
+
+
+/*Form*/
+#form {
+  width: 100%;
+  /* height: 30%; */
+  margin-top: 100px;
+  position: absolute;
+}
+/*↑↑↑form*/
+@media (max-width: 768px) {
+  #form {
+    width: 100%;
+    /* height: 30%; */
+    margin-top: 20px;
+    position: absolute;
+  }
+}
+
+.button-container button {
+  padding: 0.5em;
+  font-size: 12px;
+  width: 60px;
+  height: 30px;
+  /* border-radius: 50%; */
+  background-color: rgb(254, 223, 223);
+  border: 2px solid #fccdcd;
+}
+
+#setArtistButton {
+  padding: 0.5em;
+  font-size: 1em;
+  background-color: rgb(230, 228, 228);
+  color: rgb(0, 0, 0);
+  border: 1px solid #ccb8b8;
+  border-radius: 10px;
+}
+
+#setArtistButton:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid #f44336;
+  box-shadow: 0 12px 30px rgba(153, 1, 1, 0.24), 0 17px 30px 0 rgba(255, 87, 87, 0.19);
+}
+
+#checkNFTButton{
+ display: none;
+ margin-top: 15px;
+ position: absolute;
+ left: 50%;
+ -ms-transform: translate(-50%, -50%);
+ transform: translate(-50%, -50%);
+ padding: 0.5em;
+  font-size: 1em;
+  background-color: rgb(230, 228, 228);
+  color: rgb(0, 0, 0);
+  border: 1px solid #ccb8b8;
+  border-radius: 10px;
+}
+
+#checkNFTButton:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid #f44336;
+  box-shadow: 0 12px 30px rgba(153, 1, 1, 0.24), 0 17px 30px 0 rgba(255, 87, 87, 0.19);
+}
+
+input[type=text] {
+  text-align: center;
+  font-size: 2.2rem;
+  border-radius: 5200px;
+  border-style: none;
+  /* border: 1px dashed rgb(255, 0, 0); */
+  padding: 20px 10px;
+  margin: 00px;
+  width: 600px;
+  height: 180px;
+  background: transparent;
+  color: rgba(239, 64, 64, 0.805);
+
+}
+
+input[type=text]:focus {
+  /* border: 2px solid rgb(254, 197, 189); */
+  /* border-style: hidden; */
+  border-style: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+*.focus {
+  outline: none;
+}
+
+.loading-icon {
+  display: none;
+  padding: .5rem;
+  border: .325rem solid rgb(128, 128, 128);
+  border-top: .325rem solid rgb(230, 173, 173);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+
+#welcome {
+  display: none;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 15px;
+  color: red;
+}
+
+#nonono {
+  display: none;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 15px;
+  color: red;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+#artistmode {
+  font-family: Arial;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#artistmode hr {
+  /* height: 20px; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-bottom: 3px dotted rgb(255, 0, 0);
+  border-top: 0;
+}
+
+
+#artistmode h1 {
+  font-size: 4rem;
+  text-align: center;
+  text-shadow:
+    3px 3px 3px rgb(254, 155, 155),
+    6px 6px 6px red,
+    9px 9px 9px rgb(148, 3, 3)
+}
+
+#artistmode h2 {
+
+  font-size: 2rem;
+  text-align: center;
+  text-shadow: -2px 7px 4px rgb(255, 0, 0),
+    -2px 10px 7px rgb(255, 149, 0)
+}
+
+#artistmode h3 {
+  font-size: 1.8rem;
+  text-align: center;
+  /* text-shadow: 0px 2px 8px rgb(255, 68, 68) */
+  
+}
+
+#artistmode button {
+  margin-top: 0px;
+  font-size: 1em;
+  background-color: rgb(250, 227, 227);
+  color: rgb(234, 0, 0);
+  border: 2px solid #ffffff;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+#artistmode button:hover {
+  background-color: rgb(255, 174, 174);
+  color: black;
+  border: 2px solid #f44336;
+  box-shadow: 0 12px 16px 0 rgba(153, 1, 1, 0.24), 0 17px 50px 0 rgba(255, 87, 87, 0.19);
+}
+
+#manifesto button {
+  margin-top: 0px;
+  font-size: 1em;
+  background-color: rgb(250, 227, 227);
+  color: rgb(234, 0, 0);
+  border: 2px solid #ffffff;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+#manifesto button:hover {
+  background-color: rgb(255, 174, 174);
+  color: black;
+  border: 2px solid #f44336;
+  box-shadow: 0 12px 16px 0 rgba(153, 1, 1, 0.24), 0 17px 50px 0 rgba(255, 87, 87, 0.19);
+}
+
+#manifesto {
+  font-family: Arial;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 100px;
+  margin-top:80px;
+}
+
+#inCircleClub {
+  display: none;
+  position: fixed;
+  left: 200;
+  top: 500;
+  width: 900px;
+  height: 340px;
+}
+
+
+#inCircleClubContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  /* position: fixed; */
+  background-color: hsl(0, 94%, 75%);
+  background-image: linear-gradient(to bottom right, rgb(252, 142, 142), rgba(255, 225, 0, 0.425));
+  
+  border: 5px solid rgba(255, 0, 0, 0.462);
+  box-shadow:0 12px 20px 0 rgba(213, 0, 0, 0.24), 0 17px 50px 0 rgba(255, 16, 16, 0.19);
+  /* resize: both; */
+  overflow: auto;
+}
+
+#expand {
+  position: absolute;
+  right: 0;
+  font-size: 30px;
+}
