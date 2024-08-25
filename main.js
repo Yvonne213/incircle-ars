@@ -120,6 +120,9 @@ async function setInfo() {
     await tx.wait();
 
     console.log(`Name "${nameToSet}" added and hashed.`);
+ // Clear the input field after the name is added
+ $('#setArtistInput').val('');
+
   } catch (error) {
     console.error("Error setting name:", error);
     alert("Failed to add the name. Please try again.");
