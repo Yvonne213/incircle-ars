@@ -123,6 +123,16 @@ async function setInfo() {
  // Clear the input field after the name is added
  $('#setArtistInput').val('');
 
+// Trigger the firework animation
+confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 }
+});
+
+// Show a simple popup message (optional)
+alert("Congrats! You have successfully entered Artist's Circle!");
+
   } catch (error) {
     console.error("Error setting name:", error);
     alert("Failed to add the name. Please try again.");
