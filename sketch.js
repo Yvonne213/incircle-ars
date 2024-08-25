@@ -78,7 +78,7 @@ let t = 0;
 let lastClearTime = 0;
 let circleScale = 2; // Larger value makes the circle smaller
 function setup() {
-  let c = createCanvas(600, 600);
+  let c = createCanvas(700, 700);
   c.parent("motioncircle")
   chasingPoint = createVector(0, 0);
 }
