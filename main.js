@@ -149,7 +149,7 @@ async function getNamesAndHashes() {
     artistHeader.className = "header-artist"; // Apply CSS class
     
     const hashHeader = headerRow.insertCell(1);
-    hashHeader.innerHTML = "Hash";
+    hashHeader.innerHTML = "NameHash";
     hashHeader.className = "header-hash"; // Apply CSS class
 
     for (let i = 0; i < names.length; i++) {
